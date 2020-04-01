@@ -163,6 +163,7 @@ def createCollage(images, overlayColor, foregroundImgUrl):
         foregroundImg = Image.open(BytesIO(res.content))
         foregroundImgSize = (baseWidth // 3, baseHeight // 3)
         foregroundImg.thumbnail(foregroundImgSize)
+        foregroundImg.convert('RGBA')
         foregroundPosition = (
             ((baseWidth - foregroundImg.size[0]) // 2),
             ((baseHeight - foregroundImg.size[1]) // 2)

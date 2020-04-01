@@ -1,6 +1,6 @@
 # Auto Success Collage
 
-This is a fairly simple script that pulls messages from a Discord channel, finds all images and then creates a `1920 x 1080` collage.
+This script pulls messages from a Discord channel, finds all images and then creates a `1920 x 1080` collage.
 
 ### How to Run
 
