@@ -133,17 +133,24 @@ def createCollage(images, overlayColor, foregroundImgUrl):
                 layerPosition = (posX, posY)
 
                 image = images[imageIndex]
-                res = requests.get(image['url'])
-                discordImg = Image.open(BytesIO(res.content))
-                discordImg.convert('RGBA')
+                try:
+                    res = requests.get(image['url'])
+                    discordImg = Image.open(BytesIO(res.content))
+                    discordImg.convert('RGBA')
 
-                layerSize = (baseWidth // 4, baseHeight // 4)
-                discordImg.thumbnail(layerSize)
+                    layerSize = (baseWidth // 4, baseHeight // 4)
+                    discordImg.thumbnail(layerSize)
 
-                baseImage.paste(discordImg, layerPosition)
-                print(
-                    f'[Img {len(images) - imageIndex}/{len(images)}] Discord image applied as layer...'
-                )
+                    baseImage.paste(discordImg, layerPosition)
+                    print(
+                        f'[Img {len(images) - imageIndex}/{len(images)}] Discord image applied as layer...'
+                    )
+                except Exception as e:
+                    print(
+                        f'[Img {len(images) - imageIndex}/{len(images)}] Discord image not applied! Error: {e}'
+                    )
+                    pass
+
                 imageIndex -= 1
 
                 if imageIndex == -1:
@@ -173,11 +180,6 @@ def createCollage(images, overlayColor, foregroundImgUrl):
     outDir = 'output.png'
     baseImage.save(outDir)
     print(f'\nImage saved as {outDir}!\n')
-
-
-def getPosition(baseImageSize):
-    (width, height) = baseImageSize
-    return (randint(0, width), randint(0, height))
 
 
 if __name__ == "__main__":
