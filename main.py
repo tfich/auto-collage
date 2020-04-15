@@ -117,9 +117,12 @@ def createCollage(images, overlayColor, foregroundImgUrl):
     (baseWidth, baseHeight) = baseImageSize
     baseImage = Image.new('RGBA', baseImageSize, 'white')
 
-    gridDimensions = (6, 6)  # width, height
+    gridDimensions = (12, 12)  # width, height
     (gridWith, gridHeight) = gridDimensions
     splitWidth, splitHeight = baseWidth / gridWith, baseHeight / gridHeight
+
+    imageScalar = int(os.environ.get('DEFAULT_LAYER_SCALAR'))
+    layerSize = (baseWidth // imageScalar, baseHeight // imageScalar)
 
     imageIndex = len(images) - 1
     numIterations = math.ceil(len(images) / (gridWith * gridHeight))
@@ -137,8 +140,6 @@ def createCollage(images, overlayColor, foregroundImgUrl):
                     res = requests.get(image['url'])
                     discordImg = Image.open(BytesIO(res.content))
                     discordImg.convert('RGBA')
-
-                    layerSize = (baseWidth // 4, baseHeight // 4)
                     discordImg.thumbnail(layerSize)
 
                     baseImage.paste(discordImg, layerPosition)
@@ -175,7 +176,7 @@ def createCollage(images, overlayColor, foregroundImgUrl):
             ((baseWidth - foregroundImg.size[0]) // 2),
             ((baseHeight - foregroundImg.size[1]) // 2)
         )
-        baseImage.paste(foregroundImg, foregroundPosition)
+        baseImage.paste(foregroundImg, foregroundPosition, foregroundImg)
 
     outDir = 'output.png'
     baseImage.save(outDir)

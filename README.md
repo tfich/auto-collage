@@ -11,4 +11,4 @@ This script pulls messages from a Discord channel, finds all images and then cre
 
 ### Examples
 
-Coming soon...
+![Example 1](https://media.discordapp.net/attachments/700113606272090275/700122186513383484/output.png?width=1682&height=946)
