@@ -201,3 +201,4 @@ if __name__ == "__main__":
 
     print('Creating collage...')
     createCollage(images, overlayColor, foregroundImgUrl)
+    print('★ Please consider starring the repository here: https://github.com/tfich/auto-collage\n')
