@@ -117,7 +117,8 @@ def createCollage(images, overlayColor, foregroundImgUrl):
     (baseWidth, baseHeight) = baseImageSize
     baseImage = Image.new('RGBA', baseImageSize, 'white')
 
-    gridDimensions = (12, 12)  # width, height
+    dimension = int(os.environ.get('SQUARE_GRID_DIMENSIONS'))
+    gridDimensions = (dimension, dimension)  # width, height
     (gridWith, gridHeight) = gridDimensions
     splitWidth, splitHeight = baseWidth / gridWith, baseHeight / gridHeight
 
