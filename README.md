@@ -4,9 +4,11 @@ This script pulls messages from a Discord channel, finds all images and then cre
 
 ### How to Run
 
-1. Download `requests`, `dotenv` and `PIL`
+Prerequisites: Python3 and Pip3 installed on machine
+
+1. Run `pip install -r requirements.txt`
 2. Run `cp .env.sample .env` to create your `.env` file
-3. Optionally, edit the values in `.env`
+3. Edit the values in `.env`
 4. Run `python main.py`
 
 ### Examples
