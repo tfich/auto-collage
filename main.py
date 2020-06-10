@@ -96,11 +96,15 @@ def parseImages(messages):
     images = []
     for message in messages:
         for attachment in message['attachments']:
-            if attachment['width'] and attachment['height']:
-                images.append({
-                    'url': attachment['url'],
-                    'size': (attachment['width'], attachment['height'])
-                })
+            try:
+                if attachment['width'] and attachment['height']:
+                    images.append({
+                        'url': attachment['url'],
+                        'size': (attachment['width'], attachment['height'])
+                    })
+            except:
+                pass
+
 
     maxImages = int(os.environ.get('MAX_IMAGES'))
     if len(images) > maxImages:
